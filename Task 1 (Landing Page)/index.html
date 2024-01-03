@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    
+    <!-- Banner -->
+    <section id="banner">
+        <img src="https://wallpapercave.com/wp/wp12027981.jpg" class="logo" alt="">
+        <div class="banner-text">
+            <h1>Hair Studio</h1>
+            <p>Style Your Hair Is Style Your Life</p>
+
+            <div class="banner-btn">
+                <a href="#"><span></span>Find Out</a>
+                <a href="#"><span></span>Read More</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SideNav -->
+    <div id="sidenav">
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">FEATURES</a></li>
+                <li><a href="#">SERVICES</a></li>
+                <li><a href="#">TESTIMONIALS</a></li>
+                <li><a href="#">MEET US</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="menu-btn">
+        <i class="fa fa-bars" aria-hidden="true" id="menu"></i>
+    </div>
+
+
 </body>
+
+<script>
+
+    var menuBtn = document.getElementById('menu-btn');
+    var sideNav = document.getElementById('sidenav');
+    var menu=document.getElementById('menu');
+  
+
+    menuBtn.onclick = function () {
+
+        if(sideNav.style.right=="-250px"){
+            sideNav.style.right="0";
+            menu.classList.add('fa-window-close-o');
+            menu.classList.remove('fa-bars');
+        }
+
+        else {
+            sideNav.style.right="-250px";
+            menu.classList.add('fa-bars');
+            menu.classList.remove('fa-window-close-o');
+        }
+
+    }
+
+
+
+
+
+
+</script>
+
 </html>
