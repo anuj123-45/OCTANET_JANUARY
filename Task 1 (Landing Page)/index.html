@@ -31,7 +31,7 @@
         <nav>
             <ul>
                 <li><a href="#">HOME</a></li>
-                <li><a href="#">FEATURES</a></li>
+                <li><a href="#feature">FEATURES</a></li>
                 <li><a href="#">SERVICES</a></li>
                 <li><a href="#">TESTIMONIALS</a></li>
                 <li><a href="#">MEET US</a></li>
@@ -43,6 +43,70 @@
         <i class="fa fa-bars" aria-hidden="true" id="menu"></i>
     </div>
 
+    <!-- Features -->
+
+    <section id="feature">
+        <div class="title-text">
+            <p>Features</p>
+            <h1>Why Choose Us</h1>
+        </div>
+
+        <div class="feature-box">
+
+            <div class="features">
+
+                <h1>Experienced Staff</h1>
+                <div class="feat-desc">
+                    <div class="feat-icon">
+                        <i class="fa fa-shield" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="feat-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum eos doloribus sunt vero?</p>
+                    </div>
+
+                </div>
+
+                <h1>Pre Booking Online</h1>
+                <div class="feat-desc">
+                    <div class="feat-icon">
+                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="feat-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum eos doloribus sunt vero?</p>
+                    </div>
+
+                </div>
+
+
+                <h1>Affordable Cost</h1>
+                <div class="feat-desc">
+                    <div class="feat-icon">
+                        <i class="fa fa-inr" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="feat-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum eos doloribus sunt vero?</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="feature-img">
+                <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="">
+            </div>
+
+
+        </div>
+
+
+
+
+    </section>
+
 
 </body>
 
@@ -50,19 +114,20 @@
 
     var menuBtn = document.getElementById('menu-btn');
     var sideNav = document.getElementById('sidenav');
-    var menu=document.getElementById('menu');
-  
+    var menu = document.getElementById('menu');
+
 
     menuBtn.onclick = function () {
 
-        if(sideNav.style.right=="-250px"){
-            sideNav.style.right="0";
+        if (sideNav.style.right == "-250px") {
+            sideNav.style.right = "0";
+
             menu.classList.add('fa-window-close-o');
             menu.classList.remove('fa-bars');
         }
 
         else {
-            sideNav.style.right="-250px";
+            sideNav.style.right = "-250px";
             menu.classList.add('fa-bars');
             menu.classList.remove('fa-window-close-o');
         }
