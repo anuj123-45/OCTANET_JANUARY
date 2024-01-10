@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div id="app">
+        <header>
+            <h2>To Do List</h2>
+            <div class="progress-bar">
+                <div id="progress">
+                    0%
+                </div>
+            </div>
+        </header>
+        <ul id="taskList"></ul>
+        <button id="addTaskBtn" onclick="openModal()">Add Task</button>
+    </div>
+
+    <div id="addTaskModal">
+        <div id="modalContent">
+            <label for="taskText">Task:</label>
+            <input type="text" id="taskText" />
+
+            <label for="deadline">Deadline:</label>
+            <input type="date" id="deadline" />
+
+            <label for="priority">Priority</label>
+            <select id="priority">
+                <option value="low">Low</option>
+                <option value="normal" selected>Normal</option>
+                <option value="high">High</option>
+
+
+            </select>
+
+            <label for="label">Label:</label>
+            <input type="text" id="label" />
+
+            <button onclick="addTask()" id="add" >Add Task</button>
+            <button id="edit" onclick="editT()" >Edit</button>
+            <button onclick="closeModal()" class="cancel" style="display: flex;justify-content: center;">Cancel</button>
+
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
