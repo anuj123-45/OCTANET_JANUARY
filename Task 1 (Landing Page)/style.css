@@ -118,7 +118,7 @@ nav ul li a {
     right: 2%;
     z-index: 3;
     margin-top: 20px;
-    background: #8fe9de;
+    background: #07d4bc;
 
 }
 
@@ -450,4 +450,83 @@ hr{
 #footer{
     padding: 100px 0 20px;
     background: #efefef;
+}
+
+#footer-row{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 30px 0;
+    margin:0 auto;
+}
+
+
+#footer-row h1{
+    margin: 10px 0;
+}
+
+#footer-row p{
+    line-height: 30px;
+}
+
+
+.footer-left div ,.footer-right div{
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+}
+
+.footer-left,.footer-right div i{
+    cursor: pointer;
+}
+
+.footer-right div .fa-address-card-o{
+    color: rgb(98, 192, 10);
+}
+
+.footer-right div .fa-external-link-square{
+    color: rgb(76, 116, 224);
+}
+
+
+.footer-right div .fa-phone-square{
+    color: rgba(100, 8, 77, 0.493);
+}
+
+
+
+
+
+@media screen and (max-width:770px){
+    #footer-row{
+        display: block;
+        text-align: center;
+    }
+
+    .footer-left div {
+          display: flex;
+          justify-content: center;
+    
+    }
+
+    .footer-left  {
+      margin-bottom: 30px;
+  
+  }
+
+
+    .footer-right div{
+
+
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .footer-left,.footer-right div p{
+       font-size: 15px;        
+    }
+
+    
 }
