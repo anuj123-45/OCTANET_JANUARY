@@ -14,11 +14,19 @@
             <h2>To Do List</h2>
             <div class="progress-bar">
                 <div id="progress">
-                    
+
                 </div>
             </div>
         </header>
-        <ul id="taskList"></ul>
+        <ul id="listheader">
+            <li>Task Name</li>
+            <li>Date</li>
+            <li>Priority</li>
+            <li>Label</li>
+
+        </ul>
+        <ul id="taskList">
+        </ul>
         <button id="addTaskBtn" onclick="openModal()">Add Task</button>
     </div>
 
@@ -42,8 +50,8 @@
             <label for="label">Label:</label>
             <input type="text" id="label" />
 
-            <button onclick="addTask()" id="add" >Add Task</button>
-            <button id="edit" onclick="editT()" >Edit</button>
+            <button onclick="addTask()" id="add">Add Task</button>
+            <button id="edit" onclick="editTask()">Edit</button>
             <button onclick="closeModal()" class="cancel" style="display: flex;justify-content: center;">Cancel</button>
 
         </div>

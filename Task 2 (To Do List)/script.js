@@ -1,3 +1,7 @@
+
+// function for open modal
+
+
 function openModal() {
   document.getElementById('addTaskModal').style.display = 'flex';
   document.getElementById('edit').style.display = "none";
@@ -5,32 +9,75 @@ function openModal() {
 
 }
 
-
+// function for closing modal
 
 function closeModal() {
   document.getElementById('addTaskModal').style.display = 'none';
 }
 
-let tasks = [];
+
+
+// function for getting tasks
+
+function getTasks() {
+  return JSON.parse(localStorage.getItem('tasks')) || [];
+}
+
+
+// function for saving tasks
+
+function saveTasks(tasks) {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 let progress = 0;
-var x;
+var saving_index;
+
+let tasks = getTasks();
+
+
+// function for rendering tasks
 
 function renderTasks() {
   const taskList = document.getElementById('taskList');
   taskList.innerHTML = '';
 
+  // priority map for tasks
+  const priorityMap = {
+    high: 2,
+    normal: 1,
+    low: 0
+  }
+
+  // comparator function for sorting tasks based on priority
+
+  function compare(task1, task2) {
+    priority1 = priorityMap[task1.priority];
+    priority2 = priorityMap[task2.priority];
+    return priority2 - priority1;
+  }
+
+  tasks.sort(compare);
+
+  // traversing tasks array
+
   tasks.forEach((task, index) => {
     const taskElement = document.createElement('li');
+
     taskElement.className = `task ${tasks.priority} ${task.completed ? 'completed' : ''}`;
 
+
+    // for checkbox
 
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.checked = task.completed;
+    checkBox.classList.add('checkbx');
     checkBox.addEventListener('change', (event) => {
       event.stopPropagation();
       toggleTask(index);
     })
+
 
     const taskName = document.createElement('label');
     taskName.innerText = task.text;
@@ -47,14 +94,18 @@ function renderTasks() {
     const editButton = document.createElement('button');
     editButton.innerText = 'Edit';
 
+
+    // for editting task
     editButton.addEventListener('click', (event) => {
       event.stopPropagation();
       document.getElementById('add').style.display = "none";
       document.getElementById('edit').style.display = "flex";
       openEditModal(index);
-      x=index;
+      saving_index = index;
     });
 
+
+    // for deleting task
     const deleteButton = document.createElement('button');
     deleteButton.innerText = "Delete";
     deleteButton.addEventListener('click', (event) => {
@@ -77,6 +128,7 @@ function renderTasks() {
 
 }
 
+// function for progress bar
 
 function updateProgress() {
   const completedTasks = tasks.filter(task => task.completed).length;
@@ -87,42 +139,50 @@ function updateProgress() {
 
 }
 
+// function for toggling tasks
 
 function toggleTask(index) {
   tasks[index].completed = !tasks[index].completed;
+  saveTasks(tasks);
   renderTasks();
 }
 
+// function for opening edit model
 
-function openEditModal(index){
-  const task=tasks[index];
-  document.getElementById('taskText').value=task.text;
-  document.getElementById('deadline').value=task.deadline;
-  document.getElementById('priority').value=task.priority;
-  document.getElementById('label').value=task.label;
-  const modal=document.getElementById('addTaskModal');
-  modal.style.display="flex";
+function openEditModal(index) {
+  const task = tasks[index];
+  document.getElementById('taskText').value = task.text;
+  document.getElementById('deadline').value = task.deadline;
+  document.getElementById('priority').value = task.priority;
+  document.getElementById('label').value = task.label;
+  const modal = document.getElementById('addTaskModal');
+  modal.style.display = "flex";
 
 }
 
+// function for editing task
 
-function editT(){
-  var index=x;
-  tasks[index].text=document.getElementById('taskText').value.trim();
-  tasks[index].deadline=document.getElementById('deadline').value;
-  tasks[index].priority=document.getElementById('priority').value;
-  tasks[index].label=document.getElementById('label').value;
+function editTask() {
+  var index = saving_index;
+  tasks[index].text = document.getElementById('taskText').value.trim();
+  tasks[index].deadline = document.getElementById('deadline').value;
+  tasks[index].priority = document.getElementById('priority').value;
+  tasks[index].label = document.getElementById('label').value;
+  saveTasks(tasks);
   renderTasks();
   closeModal();
 }
 
+// function for closing modal
 
-function closeModal(){
-  document.getElementById('addTaskModal').style.display="none";
+function closeModal() {
+  document.getElementById('addTaskModal').style.display = "none";
   clearModalFields();
 }
 
-function clearModalFields(){
+// function for clearing fields
+
+function clearModalFields() {
   document.getElementById('taskText').value = '';
   document.getElementById('deadline').value = '';
   document.getElementById('priority').value = 'normal';
@@ -130,37 +190,36 @@ function clearModalFields(){
 }
 
 
-function addTask(){
+// function for adding task to todo list
+
+function addTask() {
   const taskText = document.getElementById('taskText').value.trim();
-     
 
-      if (taskText !== '') {
-        const newTask = {
-          text: taskText,
-          deadline: document.getElementById('deadline').value,
-          priority: document.getElementById('priority').value,
-          label: document.getElementById('label').value,
-          completed: false,
-        };
-        tasks.push(newTask);
-        renderTasks();
-        closeModal();
-        clearModalFields();
 
-      }
-        
+  if (taskText !== '') {
+    const newTask = {
+      text: taskText,
+      deadline: document.getElementById('deadline').value,
+      priority: document.getElementById('priority').value,
+      label: document.getElementById('label').value,
+      completed: false,
+    };
+    tasks.push(newTask);
+    saveTasks(tasks);
+    renderTasks();
+    closeModal();
+    clearModalFields();
+
+  }
+
 }
 
-
+// function for deleting task
 
 function deleteTask(index) {
   tasks.splice(index, 1);
+  saveTasks(tasks);
   renderTasks();
 }
-
-// Initial dummy tasks for demonstration
-tasks.push({ text: 'Task 1', deadline: '2024-01-15', priority: 'low', label: 'Personal', completed: false });
-tasks.push({ text: 'Task 2', deadline: '2024-01-20', priority: 'high', label: 'Work', completed: false });
-tasks.push({ text: 'Task 3', deadline: '2024-01-25', priority: 'normal', label: 'Study', completed: false });
 
 renderTasks();
